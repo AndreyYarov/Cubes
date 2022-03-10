@@ -2,10 +2,12 @@
 
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(BoxCollider))]
 public class Block : MonoBehaviour
 {
     private MeshFilter _meshFilter;
     private MeshRenderer _meshRenderer;
+    private BoxCollider _boxCollider;
     [SerializeField] private Point m_Min, m_Max;
     [SerializeField] private int m_BlockId;
 
@@ -27,6 +29,15 @@ public class Block : MonoBehaviour
             return _meshRenderer;
         }
     }
+    public BoxCollider boxCollider
+    {
+        get
+        {
+            if (!_boxCollider)
+                _boxCollider = GetComponent<BoxCollider>();
+            return _boxCollider;
+        }
+    }
     public Point min => m_Min;
     public Point max => m_Max;
     public int blockId => m_BlockId;
@@ -44,6 +55,7 @@ public class Block : MonoBehaviour
         name = $"{blockInfo.name} {size.x}x{size.y}x{size.z}";
         meshFilter.mesh = mesh;
         meshRenderer.materials = new Material[] { blockInfo.top, blockInfo.side, blockInfo.bottom };
+        boxCollider.size = size;
     }
 
     public void Cut(Point pos)

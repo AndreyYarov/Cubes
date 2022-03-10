@@ -14,8 +14,10 @@ public class WorldGenerator : MonoBehaviour
         float reliefHeight = height * relief * 0.25f;
         int reliefCenter = height / 2;
         int stoneHeight = height / 5;
-        float m = Random.Range(0.01f, 0.25f);
-        float n = Random.Range(0.01f, 0.25f);
+        float kx = Random.Range(0.01f, 0.1f);
+        float kz = Random.Range(0.01f, 0.1f);
+        int px = Random.Range(0, width);
+        int pz = Random.Range(0, depth);
 
         BlockFactory.Create("Lava", new Point(0, 0, 0), new Point(width - 1, 0, depth - 1));
         BlockFactory.Create("Stone", new Point(0, 1, 0), new Point(width - 1, stoneHeight, depth - 1));
@@ -24,7 +26,12 @@ public class WorldGenerator : MonoBehaviour
 
         for (int x = 0; x < width; x++)
             for (int z = 0; z < depth; z++)
-                y[x, z] = Mathf.RoundToInt(Mathf.Cos(m * x) * Mathf.Sin(n * z) * reliefHeight) + reliefCenter;
+            {
+                float dx = (width * 0.5f - x) / width * 1.4f;
+                float dz = (depth * 0.5f - z) / depth * 1.4f;
+                float bh = reliefHeight * (0.5f + Mathf.Sqrt(dx * dx + dz * dz));
+                y[x, z] = Mathf.RoundToInt(Mathf.Sin(kx * (x + px)) * Mathf.Sin(kz * (z + pz)) * bh) + reliefCenter;
+            }
 
         for (int x = 0; x < width; x++)
             for (int z = 0; z < depth; z++)
