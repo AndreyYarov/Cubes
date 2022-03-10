@@ -60,6 +60,7 @@ public class Block : MonoBehaviour
 
     public void Cut(Point pos)
     {
+        Point min = this.min, max = this.max;
         if (pos >= min && pos <= max)
         {
             BlockPool.Push(this);

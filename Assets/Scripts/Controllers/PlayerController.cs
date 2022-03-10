@@ -8,29 +8,47 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Min(1f)] private float m_Speed = 5f;
     [SerializeField, Min(1f)] private float m_JumpForce = 5f;
 
-    private Transform head;
-    private Rigidbody rb;
+    private Transform _head;
+    public Transform head
+    {
+        get
+        {
+            if (!_head)
+            {
+                var camera = GetComponentInChildren<Camera>();
+                if (!camera)
+                {
+                    GameObject go = new GameObject("Head Camera");
+                    go.tag = "MainCamera";
+                    camera = go.AddComponent<Camera>();
+                    go.AddComponent<AudioListener>();
+                    go.AddComponent<CameraController>();
+                }
+                else if (!camera.GetComponent<CameraController>())
+                    camera.gameObject.AddComponent<CameraController>();
+
+                _head = camera.transform;
+            }
+            return _head;
+        }
+    }
+
+    private Rigidbody _rb;
+    public Rigidbody rb
+    {
+        get
+        {
+            if (!_rb)
+                _rb = GetComponent<Rigidbody>();
+            return _rb;
+        }
+    }
 
     private IEnumerator Start()
     {
         var world = FindObjectOfType<WorldGenerator>();
         yield return world.WaitForReady();
         transform.position = world.GetSpawnPoint();
-
-        var camera = GetComponentInChildren<Camera>();
-        if (!camera)
-        {
-            GameObject go = new GameObject("Head Camera");
-            go.tag = "MainCamera";
-            camera = go.AddComponent<Camera>();
-            go.AddComponent<AudioListener>();
-            go.AddComponent<CameraController>();
-        }
-        else if (!camera.GetComponent<CameraController>())
-            camera.gameObject.AddComponent<CameraController>();
-
-        head = camera.transform;
-        rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
     }
 

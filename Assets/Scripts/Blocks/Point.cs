@@ -40,6 +40,15 @@ public struct Point
     public static bool operator <=(Point p1, Point p2) =>
         p1.x <= p2.x && p1.y <= p2.y && p1.z <= p2.z;
 
+    public static bool operator ==(Point p1, Point p2) =>
+        p1.x == p2.x && p1.y == p2.y && p1.z == p2.z;
+
+    public static bool operator !=(Point p1, Point p2) =>
+        p1.x != p2.x || p1.y != p2.y || p1.z != p2.z;
+
     public static Point Clamp(Point p, Point min, Point max) =>
         new Point(Mathf.Clamp(p.x, min.x, max.x), Mathf.Clamp(p.y, min.y, max.y), Mathf.Clamp(p.z, min.z, max.z));
+
+    public override string ToString() =>
+        $"({x}, {y}, {z})";
 }
