@@ -9,6 +9,8 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField, Range(1, 2048)] private int depth = 256;
     [SerializeField, Range(0f, 1f)] private float relief = 0.33f;
 
+    private bool ready = false;
+
     private void Start()
     {
         float reliefHeight = height * relief * 0.25f;
@@ -70,5 +72,15 @@ public class WorldGenerator : MonoBehaviour
                 BlockFactory.Create("Ground", new Point(x, stoneHeight + 1, z), new Point(xx, h - 1, zz));
                 BlockFactory.Create("Grass", new Point(x, h, z), new Point(xx, h, zz));
             }
+        ready = true;
     }
+
+    public IEnumerator WaitForReady()
+    {
+        while (!ready)
+            yield return null;
+    }
+
+    public Vector3 GetSpawnPoint() =>
+        new Vector3((width - 1) * 0.5f, height + 1f, (depth - 1) * 0.5f);
 }
