@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public static class BlockPool 
@@ -44,7 +43,7 @@ public static class BlockPool
         block.transform.parent = inactiveParent;
     }
 
-    public static Block Create(Point min, Point max, Mesh mesh, int blockId)
+    public static Block Create(Point min, Point max, int blockId)
     {
         Block block;
         if (pool.Count == 0)
@@ -55,7 +54,7 @@ public static class BlockPool
         else
             block = pool.Pop();
         block.transform.parent = activeParent;
-        block.Init(mesh, min, max, blockId);
+        block.Init(min, max, blockId);
         return block;
     }
 }

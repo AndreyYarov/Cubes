@@ -1,34 +1,11 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter))]
-[RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(BoxCollider))]
 public class Block : MonoBehaviour
 {
-    private MeshFilter _meshFilter;
-    private MeshRenderer _meshRenderer;
     private BoxCollider _boxCollider;
-    [SerializeField] private Point m_Min, m_Max;
-    [SerializeField] private int m_BlockId;
-
-    public MeshFilter meshFilter
-    {
-        get
-        {
-            if (!_meshFilter)
-                _meshFilter = GetComponent<MeshFilter>();
-            return _meshFilter;
-        }
-    }
-    public MeshRenderer meshRenderer
-    {
-        get
-        {
-            if (!_meshRenderer)
-                _meshRenderer = GetComponent<MeshRenderer>();
-            return _meshRenderer;
-        }
-    }
+    private Point _min, _max;
+    private int _blockId;
     public BoxCollider boxCollider
     {
         get
@@ -38,24 +15,25 @@ public class Block : MonoBehaviour
             return _boxCollider;
         }
     }
-    public Point min => m_Min;
-    public Point max => m_Max;
-    public int blockId => m_BlockId;
+    public Point min => _min;
+    public Point max => _max;
+    public int blockId => _blockId;
 
-    public void Init(Mesh mesh, Point min, Point max, int blockId)
+    private int vertsStartId;
+
+    public void Init(Point min, Point max, int blockId)
     {
-        m_Min = min;
-        m_Max = max;
-        m_BlockId = blockId;
+        _min = min;
+        _max = max;
+        _blockId = blockId;
 
         BlockInfo blockInfo = BlockDatabase.current[blockId];
         Point size = max - min + new Point(1, 1, 1);
 
         transform.position = (Vector3)(min + max) * 0.5f;
         name = $"{blockInfo.name} {size.x}x{size.y}x{size.z}";
-        meshFilter.mesh = mesh;
-        meshRenderer.materials = new Material[] { blockInfo.top, blockInfo.side, blockInfo.bottom };
         boxCollider.size = size;
+        BlockMeshController.GetController(blockId).AddBlock(min, max, out vertsStartId);
     }
 
     public void Cut(Point pos)
@@ -64,6 +42,7 @@ public class Block : MonoBehaviour
         if (pos >= min && pos <= max)
         {
             BlockPool.Push(this);
+            BlockMeshController.GetController(blockId).RemoveBlock(vertsStartId);
 
             BlockFactory.Create(blockId, min, new Point(pos.x - 1, max.y, max.z));
             BlockFactory.Create(blockId, new Point(pos.x + 1, min.y, min.z), max);

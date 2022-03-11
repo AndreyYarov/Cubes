@@ -29,7 +29,7 @@ public class BlockFactoryWindow : EditorWindow
         EditorGUILayout.PropertyField(MaxProp);
         max = Point.Clamp(max, min, new Point(2047, 1023, 2047));
 
-        blockId = EditorGUILayout.Popup("Block", blockId, BlockDatabase.GetBlockNames());
+        blockId = EditorGUILayout.Popup("Block", blockId, BlockDatabase.current.GetBlockNames());
 
         if (GUILayout.Button("Create"))
         {

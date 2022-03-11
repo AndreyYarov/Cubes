@@ -7,32 +7,48 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField, Range(1, 1024)] private int height = 128;
     [SerializeField, Range(1, 2048)] private int depth = 256;
     [SerializeField, Range(0f, 1f)] private float relief = 0.33f;
+    [SerializeField, Range(4, 128)] private int reliefStep = 16;
 
     private bool ready = false;
 
     private void Start()
     {
-        float reliefHeight = height * relief * 0.25f;
-        int reliefCenter = height / 2;
+        transform.position = new Vector3((width - 1) * 0.5f, (height - 1) * 0.5f, (depth - 1) * 0.5f);
+        transform.localScale = new Vector3(width, height, depth);
         int stoneHeight = height / 5;
-        float kx = Random.Range(0.01f, 0.1f);
-        float kz = Random.Range(0.01f, 0.1f);
-        int px = Random.Range(0, width);
-        int pz = Random.Range(0, depth);
+        float reliefHeight = height * relief * 0.25f;
+        float reliefCenter = height * 0.5f;
 
         BlockFactory.Create("Lava", new Point(0, 0, 0), new Point(width - 1, 0, depth - 1));
         BlockFactory.Create("Stone", new Point(0, 1, 0), new Point(width - 1, stoneHeight, depth - 1));
 
         int[,] y = new int[width, depth];
 
+        int hx = width / reliefStep + 2;
+        int hz = depth / reliefStep + 2;
+        float[,] hh = new float[hx, hz];
+        for (int i = 0; i < hx; i++)
+            for (int j = 0; j < hz; j++)
+                hh[i, j] = Random.Range(-reliefHeight, reliefHeight);
+
         for (int x = 0; x < width; x++)
+        {
+            int tx1 = x / reliefStep, tx2 = tx1 + 1;
+            float xb1 = (float)x / reliefStep - tx1, xb2 = 1f - xb1;
             for (int z = 0; z < depth; z++)
             {
-                float dx = (width * 0.5f - x) / width * 1.4f;
-                float dz = (depth * 0.5f - z) / depth * 1.4f;
-                float bh = reliefHeight * (0.5f + Mathf.Sqrt(dx * dx + dz * dz));
-                y[x, z] = Mathf.RoundToInt(Mathf.Sin(kx * (x + px)) * Mathf.Sin(kz * (z + pz)) * bh) + reliefCenter;
+                int tz1 = z / reliefStep, tz2 = tz1 + 1;
+                float zb1 = (float)z / reliefStep - tz1, zb2 = 1f - zb1;
+
+                y[x, z] = Mathf.RoundToInt(
+                    Mathf.Clamp01(1f - Mathf.Sqrt(xb1 * xb1 + zb1 * zb1)) * hh[tx1, tz1] +
+                    Mathf.Clamp01(1f - Mathf.Sqrt(xb1 * xb1 + zb2 * zb2)) * hh[tx1, tz2] +
+                    Mathf.Clamp01(1f - Mathf.Sqrt(xb2 * xb2 + zb1 * zb1)) * hh[tx2, tz1] +
+                    Mathf.Clamp01(1f - Mathf.Sqrt(xb2 * xb2 + zb2 * zb2)) * hh[tx2, tz2] +
+                    reliefCenter
+                );
             }
+        }
 
         for (int x = 0; x < width; x++)
             for (int z = 0; z < depth; z++)
