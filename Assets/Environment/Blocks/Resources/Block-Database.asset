@@ -17,79 +17,95 @@ MonoBehaviour:
     m_Top: {fileID: 2100000, guid: 95f6200479260dc43a6a9b88993d9ad7, type: 2}
     m_Side: {fileID: 2100000, guid: c9ad976600294434f9345472e6075d91, type: 2}
     m_Bottom: {fileID: 2100000, guid: 95f6200479260dc43a6a9b88993d9ad7, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 7aa505f200ff4e845b5d928905709cfc, type: 3}
     m_Strenght: 3
   - m_Name: Brick
     m_Top: {fileID: 2100000, guid: a48b6f70efd40974c8a687bd02ad4f64, type: 2}
     m_Side: {fileID: 2100000, guid: 2e250a96ea3079d44baaaf976992cc23, type: 2}
     m_Bottom: {fileID: 2100000, guid: a48b6f70efd40974c8a687bd02ad4f64, type: 2}
+    m_Sprite: {fileID: 21300000, guid: f8c46679322dde443aa158475e60bfd7, type: 3}
     m_Strenght: 5
   - m_Name: Cactus
     m_Top: {fileID: 2100000, guid: 4f779c484c66c3c4bb80d4cfbb327fa1, type: 2}
     m_Side: {fileID: 2100000, guid: 98dccbc196514e84e9a1698881540929, type: 2}
     m_Bottom: {fileID: 2100000, guid: 4f779c484c66c3c4bb80d4cfbb327fa1, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 8baa347e22c1eec4a82205e1a09c0586, type: 3}
     m_Strenght: 2
   - m_Name: Dark Stone
     m_Top: {fileID: 2100000, guid: 4fa9a2ce36dab7c45a04a6990d8267d2, type: 2}
     m_Side: {fileID: 2100000, guid: 4fa9a2ce36dab7c45a04a6990d8267d2, type: 2}
     m_Bottom: {fileID: 2100000, guid: 4fa9a2ce36dab7c45a04a6990d8267d2, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 552ebd581be83cf43af48ef15e0963cd, type: 3}
     m_Strenght: 5
   - m_Name: Dark Wood
     m_Top: {fileID: 2100000, guid: ab9711641fe5b69409386e3d587c8150, type: 2}
     m_Side: {fileID: 2100000, guid: 6c89e8f8bdb8ae1459122bd5010e516f, type: 2}
     m_Bottom: {fileID: 2100000, guid: ab9711641fe5b69409386e3d587c8150, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 1167859fa310b6140b7307b2c2e82f22, type: 3}
     m_Strenght: 3
   - m_Name: Grass
     m_Top: {fileID: 2100000, guid: 644a84c91de7e994995cb6fb2f8ee4c3, type: 2}
     m_Side: {fileID: 2100000, guid: 0a788935035f006419a0ffd58905e3c2, type: 2}
     m_Bottom: {fileID: 2100000, guid: 0040973555528434090b18e350273b55, type: 2}
+    m_Sprite: {fileID: 21300000, guid: df001e415b05a3542adea79ac64b0969, type: 3}
     m_Strenght: 3
   - m_Name: Ground
     m_Top: {fileID: 2100000, guid: 0040973555528434090b18e350273b55, type: 2}
     m_Side: {fileID: 2100000, guid: 0040973555528434090b18e350273b55, type: 2}
     m_Bottom: {fileID: 2100000, guid: 0040973555528434090b18e350273b55, type: 2}
+    m_Sprite: {fileID: 21300000, guid: e31a90bb54828f342885e529cf5b05dc, type: 3}
     m_Strenght: 3
   - m_Name: Lava
     m_Top: {fileID: 2100000, guid: c7e9d90410987534d941ac9c3c913849, type: 2}
     m_Side: {fileID: 2100000, guid: c7e9d90410987534d941ac9c3c913849, type: 2}
     m_Bottom: {fileID: 2100000, guid: c7e9d90410987534d941ac9c3c913849, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 7dc8def4546f99546b712a46a50b8d09, type: 3}
     m_Strenght: 2
   - m_Name: Leaves
     m_Top: {fileID: 2100000, guid: 4e0ae47ae7b6d8743adbb04d68a0a1e4, type: 2}
     m_Side: {fileID: 2100000, guid: 4e0ae47ae7b6d8743adbb04d68a0a1e4, type: 2}
     m_Bottom: {fileID: 2100000, guid: 4e0ae47ae7b6d8743adbb04d68a0a1e4, type: 2}
+    m_Sprite: {fileID: 21300000, guid: a24a99eb6421ac44296722108726c554, type: 3}
     m_Strenght: 2
   - m_Name: Sand
     m_Top: {fileID: 2100000, guid: ae4f32d96259d1f4297c696a936c6b6c, type: 2}
     m_Side: {fileID: 2100000, guid: ae4f32d96259d1f4297c696a936c6b6c, type: 2}
     m_Bottom: {fileID: 2100000, guid: ae4f32d96259d1f4297c696a936c6b6c, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 43403eb8721f475498d0ecc2271ab5f0, type: 3}
     m_Strenght: 2
   - m_Name: Snow
     m_Top: {fileID: 2100000, guid: 8b96595c7affe51478fe58b319c15ae7, type: 2}
     m_Side: {fileID: 2100000, guid: 8b96595c7affe51478fe58b319c15ae7, type: 2}
     m_Bottom: {fileID: 2100000, guid: 8b96595c7affe51478fe58b319c15ae7, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 1dc6cf4f1235c27428ee3f52343b9c5c, type: 3}
     m_Strenght: 2
   - m_Name: Snow Ground
     m_Top: {fileID: 2100000, guid: fba06ff2373698146a2d5659d99a7dfb, type: 2}
     m_Side: {fileID: 2100000, guid: f229a8c25e294864785c7402230e1d29, type: 2}
     m_Bottom: {fileID: 2100000, guid: 0040973555528434090b18e350273b55, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 13fc62cce730da041a0699f68944040f, type: 3}
     m_Strenght: 3
   - m_Name: Snow Leaf
     m_Top: {fileID: 2100000, guid: 8b96595c7affe51478fe58b319c15ae7, type: 2}
     m_Side: {fileID: 2100000, guid: 9822a1ba74fceba4eaaf968def440b85, type: 2}
     m_Bottom: {fileID: 2100000, guid: c019587cd735a91489a276eca1565b9c, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 07e99a82a9f3ee24cb49198c4a711278, type: 3}
     m_Strenght: 2
   - m_Name: Stone
     m_Top: {fileID: 2100000, guid: 7fe171cf03e692f4d8f825358b403759, type: 2}
     m_Side: {fileID: 2100000, guid: 7fe171cf03e692f4d8f825358b403759, type: 2}
     m_Bottom: {fileID: 2100000, guid: 7fe171cf03e692f4d8f825358b403759, type: 2}
+    m_Sprite: {fileID: 21300000, guid: f155953da9a6a52459925b52b6d6ec88, type: 3}
     m_Strenght: 5
   - m_Name: TNT
     m_Top: {fileID: 2100000, guid: ae2a1a79b81a806408a0ff97fcd428ed, type: 2}
     m_Side: {fileID: 2100000, guid: 718b81435a2018d4784ee4343777566c, type: 2}
     m_Bottom: {fileID: 2100000, guid: 830302493e5a7cf439ffde3ac9f011b5, type: 2}
+    m_Sprite: {fileID: 21300000, guid: e8dfe78b64782ca43a6cd7396433a86d, type: 3}
     m_Strenght: 3
   - m_Name: Wood
     m_Top: {fileID: 2100000, guid: 7659c377f2223eb4cbee57e3de61bf0c, type: 2}
     m_Side: {fileID: 2100000, guid: 141b249f9e50eb34b8c9f26a3078a00e, type: 2}
     m_Bottom: {fileID: 2100000, guid: 7659c377f2223eb4cbee57e3de61bf0c, type: 2}
+    m_Sprite: {fileID: 21300000, guid: 4bb0648c21c9d0649841c5b60ed3312f, type: 3}
     m_Strenght: 3

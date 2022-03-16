@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField, Min(1f)] private float m_Speed = 5f;
-    [SerializeField, Min(1f)] private float m_JumpForce = 5f;
+    [SerializeField, Min(1f)] private float m_JumpSpeed = 5f;
 
     private Transform _head;
     public Transform head
@@ -77,8 +77,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Jump") > 0f)
         {
             var ray = new Ray(transform.position + Vector3.up * 0.1f, Vector3.down);
-            if (Physics.Raycast(ray, 0.2f))
-                rb.AddForce(Vector3.up * m_JumpForce);
+            if (Physics.Raycast(ray, 0.2f) && rb.velocity.y < m_JumpSpeed * 0.1f)
+                rb.velocity += Vector3.up * m_JumpSpeed;
         }
     }
 }
