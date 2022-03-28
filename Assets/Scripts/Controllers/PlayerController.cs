@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -44,14 +43,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator Start()
-    {
-        var world = FindObjectOfType<WorldGenerator>();
-        yield return world.WaitForReady();
-        transform.position = world.GetSpawnPoint();
-        rb.velocity = Vector3.zero;
-    }
-
     private void FixedUpdate()
     {
         if (!head)
@@ -80,5 +71,12 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, 0.2f) && rb.velocity.y < m_JumpSpeed * 0.1f)
                 rb.velocity += Vector3.up * m_JumpSpeed;
         }
+    }
+
+    public void Init(Vector3 startPos)
+    {
+        gameObject.SetActive(true);
+        transform.position = startPos;
+        rb.velocity = Vector3.zero;
     }
 }

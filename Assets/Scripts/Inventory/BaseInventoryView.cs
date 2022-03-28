@@ -12,6 +12,18 @@ public abstract class BaseInventoryView<V, P> : View<V, P>
     private List<InventoryItem> items = new List<InventoryItem>();
     private Stack<InventoryItem> disabledItems = new Stack<InventoryItem>();
 
+    protected void SetTitles(string[] titles)
+    {
+        if (titles == null || titles.Length != items.Count)
+        {
+            Debug.LogError("Wrong titles count");
+            return;
+        }
+
+        for (int i = 0; i < items.Count; i++)
+            items[i].SetTitle(titles[i]);
+    }
+
     protected void Init(int[] ids, int[] counts, int selectedId, Transform parent, UnityAction<int> OnSelect)
     {
         if (ids == null || counts == null || ids.Length != counts.Length)

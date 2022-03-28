@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
@@ -19,5 +17,10 @@ public class InventoryItem : Toggle
 
         onValueChanged.RemoveAllListeners();
         onValueChanged.AddListener(selected => { if (selected) OnSelect(); });
+    }
+
+    public void SetTitle(string title)
+    {
+        if (m_Title) m_Title.text = title;
     }
 }

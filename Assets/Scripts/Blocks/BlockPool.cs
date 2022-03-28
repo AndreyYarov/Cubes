@@ -57,4 +57,10 @@ public static class BlockPool
         block.Init(min, max, blockId);
         return block;
     }
+
+    public static void Clear()
+    {
+        while (pool.Count > 0)
+            Object.DestroyImmediate(pool.Pop().gameObject);
+    }
 }

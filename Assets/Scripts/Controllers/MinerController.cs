@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,7 +23,7 @@ public class MinerController : MonoBehaviour
             if (_inventory == null)
             {
                 _inventory = new Inventory();
-                _inventory.SetInventory(5, (0, 10), (1, 10), (2, 10), (3, 10), (4, 10), (5, 10), (6, 10));
+                _inventory.SetInventory(5, Enumerable.Range(0, 16).Select(i => (i, 15)).ToArray());
             }
             return _inventory;
         }

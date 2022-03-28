@@ -11,7 +11,13 @@ public class InventoryPresenter : Presenter<Inventory, InventoryView, InventoryP
 
     public override void OnShow()
     {
+        Time.timeScale = 0f;
         OnModelUpdate();
+    }
+
+    public override void OnHide()
+    {
+        Time.timeScale = 1f;
     }
 
     protected override void OnModelUpdate()
@@ -28,9 +34,8 @@ public class InventoryPresenter : Presenter<Inventory, InventoryView, InventoryP
     public override void OnUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
-        {
             Visible = !Visible;
-            Time.timeScale = Visible ? 0f : 1f;
-        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && Visible)
+            Visible = false;
     }
 }

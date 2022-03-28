@@ -1,7 +1,6 @@
-﻿using System.Linq;
-using System.Collections;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 
 public class Inventory : IModel
@@ -35,11 +34,8 @@ public class Inventory : IModel
         get => _activeSlot;
         set
         {
-            if (_activeSlot != value)
-            {
-                _activeSlot = value;
-                OnInventoryUpdate.Invoke();
-            }
+            _activeSlot = value;
+            OnInventoryUpdate.Invoke();
         }
     }
     public int activeBlockId 
@@ -47,10 +43,10 @@ public class Inventory : IModel
         get => activeSlot < 0 ? -1 : activeSlots[activeSlot];
         set
         {
-            int newSlot = System.Array.IndexOf(activeSlots, value);
+            int newSlot = Array.IndexOf(activeSlots, value);
             if (newSlot < 0)
             {
-                newSlot = System.Array.IndexOf(activeSlots, -1);
+                newSlot = Array.FindIndex(activeSlots, slot => slot <= 0);
                 if (newSlot < 0)
                     newSlot = activeSlots.Length - 1;
                 activeSlots[newSlot] = value;
@@ -93,11 +89,11 @@ public class Inventory : IModel
         if (!blocks.ContainsKey(id) || blocks[id] <= 0)
             return false;
         blocks[id]--;
-        if (blocks[id] == 0)
+        if (blocks[id] <= 0)
         {
             blocks.Remove(id);
             activeSlots[activeSlot] = -1;
-            activeSlot = -1;
+            activeSlot = Array.FindIndex(activeSlots, slot => slot >= 0);
         }
         OnInventoryUpdate.Invoke();
         return true;
@@ -118,7 +114,7 @@ public class Inventory : IModel
         if (!blocks.ContainsKey(blockId))
         {
             blocks.Add(blockId, count);
-            int freeSlot = System.Array.FindIndex(activeSlots, slot => slot < 0);
+            int freeSlot = Array.FindIndex(activeSlots, slot => slot < 0);
             if (freeSlot >= 0)
                 activeSlots[freeSlot] = blockId;
         }

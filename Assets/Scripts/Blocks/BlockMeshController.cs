@@ -18,6 +18,8 @@ public class BlockMeshController : MonoBehaviour
     private static Dictionary<int, BlockMeshController> controllers = new Dictionary<int, BlockMeshController>();
     private static Transform parent;
 
+    public static void Clear() => controllers.Clear();
+
     public static BlockMeshController GetController(string blockName)
     {
         int blockId = BlockDatabase.current.GetBlockIndex(blockName);
